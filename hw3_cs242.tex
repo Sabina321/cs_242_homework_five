@@ -1,0 +1,240 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[margin=0.5in]{geometry}
+\setlength\parindent{0pt}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{subcaption}
+
+
+\begin{document}
+
+
+\begin{center}
+\Huge{\textsc{Homework 2}} 
+
+\Large\textsc{CMPS242 - Fall 2015}
+
+\large{\hfill Yanfei Tu \hfill Sabina Tomkins \hfill Andrei Ignat \hfill}
+
+\normalsize\flushright\today
+\end{center}
+\vfill
+
+\section{Problem One}
+To determine the error rate we look at the probability of a point being misclassified. There are two cases where a point can be misclassified i.e. we either label a $+$ point with the $-$ label or we label a $-$ with the $-$ point with the $+$ label. Thus total error probability is equal to 
+
+\[
+P(\text{error})=P(x=-)\cdot P(\text{label} = +| x = -) + P(x=+)\cdot P(\text{label} = -| x=+)
+\]
+
+Since each point is drawn independently, the conditional probability of the label given the classification of the target point, is just the probability of the label. So we have:
+
+\[
+P(x=+)\cdot P(\text{label} = -) + P(x=+)\cdot P(\text{label} =-)
+\]
+
+where $P(\text{label})$ is determined by the probability of the configurations given in Table~\ref{tab:p1confs}. We notice that there are four possible neighbor configurations:\\
+
+\begin{table}[ht]
+\centering
+\caption{Configurations}\label{tab:p1confs}
+\begin{tabular}{|c|c|c|c|c|}\hline
+Configurations&- - +  &  + + - & - - - & + + + \\
+& & & & \\
+Probability of points in configuration &$\frac{1}{3}\cdot \frac{1}{3}\cdot \frac{2}{3}$ &$\frac{1}{3}\cdot \frac{2}{3}\cdot \frac{2}{3}$  & $\frac{1}{3}\cdot \frac{1}{3}\cdot \frac{1}{3}$ &$\frac{2}{3}\cdot \frac{2}{3}\cdot \frac{2}{3}$ \\
+& & & & \\
+Number of ways to choose each configuration & $\binom{3}{2}$& $\binom{3}{2}$ & 1 & 1 \\
+& & & & \\
+Probability of each configuration & $\frac{6}{27}$ & $\frac{12}{27}$& $\frac{1}{27}$& $\frac{8}{27}$\\
+\hline
+\end{tabular}
+\end{table}
+
+From Table~\ref{tab1:ps1conf} we can infer that the probabilities of each label that the algorithm predicts i.e.
+
+\begin{align*}
+P(\text{label}=-) &= P(--+)+P(---) = \frac{6}{27} +\frac{1}{27} = \frac{7}{27}\\
+P(\text{label}=+) &= P(-++)+P(+++) = \frac{8}{27} +\frac{12}{27} = \frac{20}{27}\\
+\end{align*} 
+
+%Thus if the point is positive the probability of being misclassified is equal to the P(- - -) + P(- - +) or 7/27. 
+%
+%If the point is negative the probability of being misclassified is equal to P(+ + +) + P(+ + -) or 20/27. 
+
+We plug these values into the formula we obtained for the total error probability and we obtain:
+
+\begin{align*}
+P(\text{error}) &= P(x=-)\cdot P(\text{label}= +) + P(x=+)\cdot P(\text{label}= -)\\
+&=\frac{1}{3}\cdot\frac{20}{27} + \frac{2}{3}\cdot\frac{7}{27}=0.4197 >\frac{1}{3}
+\end{align*}
+
+This error is higher than the Bayes optimal, which is comforting as we know we cannot get lower than the optimal $\frac{1}{3}$. Without getting into the same level of detail, we note that, if the noise rate is $\frac{1}{10}$, this implies that the Bayes optimal hypothesis becomes $\frac{1}{10}$ and, following the same argument as before, we get:
+
+\begin{align*}
+P(\text{error})&=P(x=-)\cdot P(\text{label}= +) + P(x=+)\cdot P(\text{label}= -)\\
+&=\frac{1}{10}\left(\binom{3}{2}\cdot\frac{1}{10}\cdot\frac{9}{10}\cdot\frac{9}{10}+\frac{9}{10}\cdot\frac{9}{10}\cdot\frac{9}{10}\right)+\frac{9}{10}\left(\binom{3}{2}\cdot\frac{1}{10}\cdot\frac{1}{10}\cdot\frac{9}{10}+\frac{1}{10}\cdot\frac{1}{10}\cdot\frac{1}{10}\right)\\
+&=10^{-4}\left(3\cdot 81+729+3\cdot 81+9\right)=\frac{1224}{10000}=0.1224>\frac{1}{10}
+\end{align*}
+We see that once again, the probability of error is higher than the Bayes optimal hypothesis. This is a comforting result.
+\clearpage
+
+\section{Problem Two}
+
+
+
+\section{Problem Three}
+%\subsection{Question}Assume we have a two-class learning problem where the labeled data consists
+%of 1,000 data points from one class, and 10 data points from the other class. A grad
+%student is working on a machine learning algorithm and manages to get 99\% accuracy
+%using ten fold cross validation. Recall that 10-fold cross validation splits the data into
+%10 equal-sized chunks. For each chunk, the algorithm is trained on the other 9 and then
+%tested on the held out chunk. The accuracies on each of the held-out chunks are then
+%averaged to get an overall accuracy rate. Is this a big achievement for the algorithm?
+%Justify your answer by describing why it should be diffcult to get this accuracy on
+%this kind of data, or giving a simple classiffcation strategy whose accuracy is at least
+%as good.
+%\subsection{Answer}
+We are sorry to ruin someone's hopes and dreams, but this is not a big achievement for the algorithm. A simple model would always predict the majority class. In this case, if the model always selected the majority class, you would have accuracy at least $\frac{1000}{1010}=.990099$. So for any model to be said to perform well, it should get at least 99\% accuracy. A model with exactly 99\% accuracy is doing nothing better than always predicting the majority class. So it will always misclassify the 10 points of the second class and will never be able to achieve 100\%. We would like a model which can correctly classify the 10 points of the second class, as well as the 1000 points in the first class. The data is very much skewed, in this case, it is easy to achieve very high accuracy. So for skewed training data, accuracy alone is not a good metrics, precision and recall should also be measured.   
+
+\section{Problem Four}
+%\subsection{question}
+%Consider using Naive Bayes to estimate if a student will be an honor student (H) or normal student (N) in college based on their high school performance. Each instances have two measurements: the student's high school GPA (a real number) and whether or not the student took any AP courses (a boolean value, yes=1, no=0). Based on the following training data, create (by hand and/or calculator) a Naive Bayes prediction rule using gaussians to estimate the conditional probability density of a high school GPAs given the class (H or N) and a Bernoulli distribution for the AP probability . (I know that Gaussians may not fit this problem well, but use them anyway). Recall that Naive Bayes makes the simplifying assumption that the features are independent given the class (see pages 45-46 of BIshop), so (for example) P [GPA=3.2;AP=yes j type=H] = P [GPA=3.2 j type=H] P [AP=yes j type=H] \\
+
+We start by addressing the questions: 
+\begin{itemize}
+\item If AP courses are taken, predict \textbf{H} if the GPA is between ..., and ...
+\item if AP courses are not taken, predict \textbf{H} if the GPA is between ..., and ...
+\end{itemize}
+
+We will predict \textbf{H}, if the probability of \textbf{H} given the data is greater than the probability of \textbf{N}. Thus we need to be able to evaluate the $P(\mathbf{H}|\text{data})$ and the $P(\mathbf{N}|\text{data})$. Using Naive Bayes we can define $P_H$ as the probability that the AP was taken, conditioned on the students being honors students. Similarly, $P_N$ is the probability that the AP was taken conditioned on the students not being honors students. 
+
+\begin{align*}
+P(\mathbf{H} | \text{GPA}=x, \text{AP}=\text{yes}) &= P(\text{GPA} = x | \mathbf{H}) \cdot  P(\text{AP} = \text{yes} | \mathbf{H}) P(\mathbf{H})\\
+&= \frac{1}{{\sigma_{H} \sqrt {2\pi } }}e^{{{ - \left( {x - \mu_H } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_H } \right)^2 } {2\sigma_{H} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{H} ^2 }}} \cdot  P_H^{\text{yes}}\cdot (1-P_H)^{1-\text{yes}} \cdot  P(\mathbf{H})\\
+P(\mathbf{N} | \text{GPA}=x, \text{AP}=\text{yes}) &= P(\text{GPA} = x | \mathbf{H}) \cdot  P(\text{AP} = \text{yes} | \mathbf{H}) P(\mathbf{N})\\
+&= \frac{1}{{\sigma_{N} \sqrt {2\pi } }}e^{{{ - \left( {x - \mu_N } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_N } \right)^2 } {2\sigma_{N} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{N} ^2 }}} \cdot  P_N^{\text{yes}}\cdot (1-P_N)^{1-\text{yes}} \cdot  P(\mathbf{N})
+\end{align*}
+Our goal will be to compare these two equations before we plug in values for the $\mu$'s and $\sigma$'s. In order to not overcomplicate ourselves with incomprehensible math, we define $k_H^\text{yes}$ and $k_N^\text{yes}$ as
+
+\[
+k_H^\text{yes}=\frac{P_H^{\text{yes}} (1-P_H)^{1-\text{yes}}  P(\mathbf{H})}{{\sigma_{H} }} \qquad \qquad\qquad k_N^\text{yes}=\frac{P_N^{\text{yes}} (1-P_N)^{1-\text{yes}}  P(\mathbf{N})}{{\sigma_{N} }} 
+\]
+Our probabilities thus become:
+\begin{align*}
+P(\mathbf{H} | \text{GPA}=x, \text{AP}=\text{yes}) &=  k_H^\text{yes} \frac{1}{{\sqrt {2\pi } }}e^{{{ - \left( {x - \mu_H } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_H } \right)^2 } {2\sigma_{H} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{H} ^2 }}}\\
+P(\mathbf{N} | \text{GPA}=x, \text{AP}=\text{yes}) &= k_N^\text{yes}\frac{1}{{ \sqrt {2\pi } }}e^{{{ - \left( {x - \mu_N } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_N } \right)^2 } {2\sigma_{N} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{N} ^2 }}} 
+\end{align*}
+
+%$P(H | \text{GPA}=x, AP=y) = \\
+% \frac{1}{{\sigma_{H} \sqrt {2\pi } }}e^{{{ - \left( {x - \mu_H } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_H } \right)^2 } {2\sigma_{H} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{H} ^2 }}} * P_H * P(\mathbf{H})$
+%
+%$P(N | \text{GPA}=x, AP=y) = P(\text{GPA} = x | \mathbf{H}) * P(AP = y | \mathbf{H}) P(N)$
+%
+%$= \frac{1}{{\sigma_{N} \sqrt {2\pi } }}e^{{{ - \left( {x - \mu_N } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_N } \right)^2 } {2\sigma_{N} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{N} ^2 }}} * P_N * P(N)$
+
+%We simply $P_H * P(\mathbf{H})$ to $k_H$ and $P_N * P(N)$ to $k_N$. \\
+We now attempt to determine the GPA range based on the fact that, if the student is an \textbf{H}onors student, the following should hold
+\begin{align*}
+P(\mathbf{H} | \text{GPA}=x, \text{AP}=\text{yes}) & P(\mathbf{N} | \text{GPA}=x, \text{AP}=\text{yes}) \\
+k_H^\text{yes} \frac{1}{{\sqrt {2\pi } }}e^{{{ - \left( {x - \mu_H } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_H } \right)^2 } {2\sigma_{H} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{H} ^2 }}} &> k_N^\text{yes}\frac{1}{{ \sqrt {2\pi } }}e^{{{ - \left( {x - \mu_N } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_N } \right)^2 } {2\sigma_{N} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{N} ^2 }}} 
+\end{align*}
+%We now simplify $k_H = \frac{k_H}{\sigma_{H}}$ and $k_N = \frac{k_N}{\sigma_{N}}$. 
+We simplify the $\sqrt{2\pi}$, and rearrange such that we get all the exponentials on one side and everything else on the other side. What we get is
+
+\[
+\frac{e^{{{ - \left( {x - \mu_H } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_H } \right)^2 } {2\sigma_{H} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{H} ^2 }}}}{e^{{{ - \left( {x - \mu_N } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_N } \right)^2 } {2\sigma_{N} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{N} ^2 }}}} > \frac{k_N}{k_H}
+\]
+
+The next natural step is to take the natural log(which also leads to a sign inversion since on both sides we have values smaller than 1) and this leads to:
+
+%ln(\frac{k_N}{k_H})
+\begin{align*}
+ {{{ - \left( {x - \mu_H } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_H } \right)^2 } {2\sigma_{H} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{H} ^2 }}}+{{{\left( {x - \mu_N } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu_N } \right)^2 } {2\sigma_{N} ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma_{N} ^2 }}}&< ln\left(\frac{k_N}{k_H}\right)\\
+\frac{1}{2\sigma_{H} ^2}\cdot\left(-x^2 + 2\mu_{H}x - \mu_H^2\right) + \frac{1}{2\sigma_{N} ^2}\cdot\left(x^2 - 2\mu_{N}x - \mu_N^2\right) + \left(\frac{\mu_N^2}{2\sigma_N^2} - \frac{\mu_H^2}{2\sigma_H^2}\right)&< ln\left(\frac{k_N}{k_H}\right)\\
+x^2\left(\frac{1}{2\sigma_{N} ^2} - \frac{1}{2\sigma_{H} ^2}\right) + x\left(\frac{\mu_H}{\sigma_{H} ^2}- \frac{\mu_N}{\sigma_{N} ^2}\right) +\left(\frac{\mu_N^2}{2\sigma_N^2} - \frac{\mu_H^2}{2\sigma_H^2}- ln\left(\frac{k_N}{k_H}\right)\right)&<0\\
+\end{align*}
+Thus we have to solve a quadratic equation of the form $ax^2+bx+c=0$ with
+\begin{align*}
+ a &= \frac{1}{2\sigma_{N} ^2} - \frac{1}{2\sigma_{H} ^2}\\
+ b &= \frac{\mu_H}{\sigma_{H} ^2}- \frac{\mu_N}{\sigma_{N} ^2}\\
+  c &= \left(\frac{\mu_N^2}{2\sigma_N^2} - \frac{\mu_H^2}{2\sigma_H^2}- ln\left(\frac{k_N}{k_H}\right)\right)= \left(\frac{\mu_N^2}{2\sigma_N^2} - \frac{\mu_H^2}{2\sigma_H^2}- ln\left(\frac{P_N^{\text{yes}} (1-P_N)^{1-\text{yes}}  P(\mathbf{N})\sigma_{H}}{P_H^{\text{yes}} (1-P_H)^{1-\text{yes}}  P(\mathbf{H})\sigma_{N}}\right)\right)
+\end{align*}
+
+To find the values for a, b, and c, we consider the data in Table~\ref{tab:p4info}.
+
+\begin{table}[ht]
+\centering
+\caption{Class and GPAs}\label{tab:p4info}
+\begin{tabular}{|c|c|c|}\hline
+Class &  AP & GPA \\
+\hline
+H &    yes \% &    4.0 \%\\   
+H &    yes  \%&    3.7 \%\\    
+H &    no  \%&    2.5  \%\\   
+\hline 
+N &    no  \%&    3.8  \%\\   
+N &    yes  \%&    3.3  \%\\   
+N &    yes  \%&    3.0  \%\\    
+N &    no  \%&    3.0  \%\\  
+N &    no  \%&    2.7  \%\\   
+N &    no  \%&    2.2  \%\\    
+\hline
+\end{tabular}
+\end{table}
+
+
+We now solve for the mean and variance using Maximum Likelihood and formulas 2.121 and 2.122 from the Bishop textbook and get the results from Table~\ref{tab:p4mlgauss}
+
+\begin{table}[ht]
+\centering
+\caption{Class and GPAs}\label{tab:p4mlgauss}
+\begin{tabular}{|c|c|c|}\hline
+Class &  Mean & Variance \\
+\hline
+H &    3.4 &    .4200 \\   
+N&    3.0  &    .2433 \\    
+\hline
+\end{tabular}
+\end{table}
+
+
+Similarly we can draw from the Bernoulli distribution which is defined as $P(x) = P^x(1-`P)^{1-x}$. In our case, $P$ is actually $P_H$ and $P_N$ and thus these two Bernoulli distributions are based on the probabilities in the following table:
+
+\begin{table}[ht]
+\centering
+\caption{Class and AP}
+\begin{tabular}{|c|c|}\hline
+Class &  P  \\
+\hline
+H &   $P_H=2/3$  \\   
+N &    $P_N=1/3$ \\    
+\hline
+\end{tabular}
+\end{table}
+
+In order to compute our complicated logarithm term, give the value 1 to the case of the student having taken AP and 0 to the student not having taken AP. The only thing that is missing now is the general probability of having a honors/non-honors student which from Table~\ref{tab:p4info} are $P(\mathbf{H})=\frac{1}{3}$ and $P(\mathbf{N})=\frac{2}{3}$. We now have all the ingredients needed to obtain our coefficients $a$, $b$ and $c$. However, we now make the following observation and namely that all the formulas that we painstakingly derived so far stay the same when we consider the case of the student not having taken an AP class with the only difference being in the logarithm term. The logarithm term changes in the sense that, when the student is not an AP student, the $(1-P_H)$ and $(1-P_N)$ terms will affect the formula instead of the $P_H$ and $P_N$ terms which are "activated" when the student is an AP student. This leads us to the following values for \textit{a, b, } and \textit{c}:
+
+\begin{table}[ht]
+\centering
+\caption{Class and GPAs for AP=yes}
+\begin{tabular}{|c|c|c|c|}\hline
+AP& \textit{a} &  \textit{b} & \textit{c}  \\
+\hline
+yes &5.6099 & -31.3917 &42.6870\\
+no &5.6099 & -31.3917 &41.3007\\
+\hline
+\end{tabular}
+\end{table}
+\bigskip
+Plugging these values into a numerical solver for the roots of the second order equation yields the following predictions to our initial question:
+
+\begin{itemize}
+\item If AP courses are taken, predict \textbf{H} if the GPA is between 2.3300, and 3.2658
+\item if AP courses are not taken, predict \textbf{H} if the GPA is between 2.1152, and 3.4806
+\end{itemize}
+
+A sanity check for a case in which the GPA would be 3.0 shows that for both the case of AP, as well as for non-AP, the second order equation is smaller than 0, given the coefficients $a$, $b$ and $c$.
+\end{document}
