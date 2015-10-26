@@ -40,6 +40,43 @@ Save the data to an aff file and run the linear regression algorithm in Weka on 
 \subsection{Part b} 
 Suppose you had an unlabeled instance x = 3,3,5. What t prediction for t would the model from part (a) give?\\
 
+Should probably write the coefficients out. -0.1343 * x1 +1.8477 * x2 +-0.8966 * x3 +4.3608
+
 \textbf{Answer}:5.0180
+
+\subsection{Part c}
+ 1.616  * x2 +
+     -1.0388 * x3 +
+      5.7513
+Is the change qualitatively what you would expect. Yes. 
+RMSE:0.4473
+
+\subsection{Part d}
+Will come back to this. 
+
+\subsection{Part e}
+If the examples are re-ordered (so the rows of X and elements of t are permuted), what happens to the learned w vector and why?
+
+\section{Problem Two}
+\subsection{Part a}
+Select the Use training set test option and run the three classifiers. Report their results (accuracies). Which algorithm is best and why?
+
+\begin{table}[htbp]
+    \centering
+  
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+        & Nearest Neighbor & Naive Bayes & Logistic Regression \\ 
+            \hline
+         Accuracy Training Set&  100\%&76.3021\%&78.2552\%   \\ 
+         Accuracy 66\% Split &  72.7969 \% &77.0115 \%&80.0766 \%
+             \hline
+      
+    \end{tabular}
+\end{table}
+At first glance it may appear that 1 Nearest Neighbor is the best. However it's performance is so nice on the training set that one is agitated by a fear of the model having overfitted the data. Indeed that seems to be the case, when we perform a 66\% split training, testing, we see that the 1 Nearest Neighbor is the least impressive of the lot. 
+
+\subsection{Part b}
+
 
 \end{document}
