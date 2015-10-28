@@ -64,6 +64,114 @@ Select the Use training set test option and run the three classifiers. Report th
 At first glance it may appear that 1 Nearest Neighbor is the best. However it's performance is so nice on the training set that one is agitated by a fear of the model having overfitted the data. Indeed that seems to be the case, when we perform a 66\% split training, testing, we see that the 1 Nearest Neighbor is the least impressive of the lot. 
 
 \subsection{Part b}
+From weka we have that the coefficients are: 
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+   \hline
+preg          &       -0.1232\\
+plas             &    -0.0352\\
+pres               &   0.0133\\
+skin              &   -0.0006\\
+insu               &   0.0012\\
+mass              &   -0.0897\\
+pedi             &    -0.9452\\
+age            &      -0.0149\\
+Intercept      &       8.4047\\ %bias
+    \end{tabular}
+    \end{center}
+\end{table}
+
+We chose point 643, and got the result was -0.004295 Which we confirm is close to 0. Rerunning a sanity chance of P(x) = 1/(1+$e^x$) = .5. 
+
+\subsection{Part c}
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+   \hline
+        & Nearest Neighbor & Naive Bayes & Logistic Regression \\ \hline
+         Accuracy 10 Fold Cross Validation &  70.1823\%&76.3021\% &  77.2135 \%   \\ \hline
+       
+             
+     
+    \end{tabular}
+    \end{center}
+\end{table}
+
+We see that the accuracy for Naive Bayes remains the same. The accuracy for Nearest Neighbor is greatly decreased. The accuracy for logistic regression suffers only slightly. Thus we see that Naive Bayes and Logistic Regression are more robust algorithms. 
+
+\subsection{Part d}
+Use preprocessing to normalize the features (use the preprocess tab and select unsupervised, attribute, normalize). Read the information on this method, and look at the new attribute values. What did it do?
+
+It fit a normal distribution to each feature, finding the mean, standard deviation, count, and precision for each class and each feature. 
+
+Rerun the logistic regression with 10-fold cross validation and the attributes normalized. Did the accuracies change? Why?
+
+The accuracies did not change. It won't change because normalizing is applying a linear transformation to all features so this may rescale or shift the decision boundary, and the points, but all with respect to each other so the actual decisions will not change, and the accuracy will remain the same. 
+
+The weight vectors changed but not by that much. 
+preg                 -2.0941
+plas                 -6.9976
+pres                  1.6221
+skin                 -0.0613
+insu                  1.0082
+mass                 -6.0189
+pedi                 -2.2136
+age                  -0.8921
+Intercept             8.0187
+
+They will change on the order of the standard deviation but nothing so, the change is not so dramatic. 
+
+\subsection{Part e}
+In logistic regression, the ridge parameter penalizes large weights. What happens to the cross validation accuracy and hypothesis weights when it is set to 0? How about when it is increased (to say 0.3)?
+
+The cross validation does not change when it is set to zero, the default value of 1.0$10^-8$ is already quite small. The accuracy improves slightly with a larger ridge parameter of 3, to 77.6, but it does not change at .30. 
+
+The hypothesis weights do not change  much. 
+
+.3
+preg                 -2.0752
+plas                 -6.9355
+pres                   1.598
+skin                 -0.0582
+insu                  0.9795
+mass                  -5.965
+pedi                 -2.1959
+age                  -0.8976
+Intercept             7.9622 
+
+0 
+preg                 -2.0941
+plas                 -6.9976
+pres                  1.6221
+skin                 -0.0613
+insu                  1.0082
+mass                 -6.0189
+pedi                 -2.2136
+age                  -0.8921
+Intercept             8.0187
+
+\subsection{Part f}
+Would you expect 3NN or 5NN do better than Nearest Neighbor? Why? Test your hypothesis by using IBk in the lazy folder and report the resulting accuracies.
+
+Yes, we would. The model is more complex so it should obtain better results as long it does not overfit. 
+
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+   \hline
+        & 1 Nearest Neighbor & 3 Nearest Neighbor  & 5 Nearest Neighbor  \\ \hline
+         Accuracy 10 Fold Cross Validation &  70.1823\%&72.6563\% &  73.1771 \%   \\ \hline
+       
+             
+     
+    \end{tabular}
+    \end{center}
+\end{table}
+
+\subsection{Part g}
 
 \section{Problem 4}
 
