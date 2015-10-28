@@ -58,16 +58,14 @@ with the error $= 0.1897$, which is almost the same as part \textbf{a)}, because
 \paragraph{a)}
 Select the Use training set test option and run the three classifiers. Report their results (accuracies). Which algorithm is best and why?
 
-\begin{table}[ht]
+\begin{table}[H]
     \begin{center}
     \begin{tabular}{|c|c|c|c|}
    \hline
         & Nearest Neighbor & Naive Bayes & Logistic Regression \\ \hline
          Accuracy Training Set &  100\%&76.3021\% & 78.2552\%   \\ \hline
          Accuracy 66\% Split &  72.7969 \% &77.0115 \% & 80.0766 \% \\\hline
-             
-     
-    \end{tabular}
+    \end{tabular} \caption{Table for 2.a)}
     \end{center}
 \end{table}
 
@@ -97,7 +95,7 @@ Intercept      &       8.4047\\    \hline%bias   \hline
 
 \paragraph{c)}We see that the accuracy for Naive Bayes remains the same. The accuracy for Nearest Neighbor is greatly decreased. The accuracy for logistic regression suffers only slightly. Thus we see that Naive Bayes and Logistic Regression are more robust algorithms. 
 
-\begin{table}[ht]
+\begin{table}[H]
     \begin{center}
     \begin{tabular}{|c|c|c|c|}
    \hline
@@ -106,7 +104,7 @@ Intercept      &       8.4047\\    \hline%bias   \hline
        
              
      
-    \end{tabular}
+    \end{tabular}\caption{Table for 2.c)}
     \end{center}
 \end{table}
 
@@ -188,7 +186,7 @@ Would you expect 3NN or 5NN do better than Nearest Neighbor? Why? Test your hypo
 Yes, we would. The model is more complex so it should obtain better results as long it does not overfit. 
 
 
-\begin{table}[ht]
+\begin{table}[H]
     \begin{center}
     \begin{tabular}{|c|c|c|c|}
    \hline
@@ -197,7 +195,7 @@ Yes, we would. The model is more complex so it should obtain better results as l
        
              
      
-    \end{tabular}
+    \end{tabular}\caption{Table for 2.f)}
     \end{center}
 \end{table}
 
@@ -214,11 +212,11 @@ We do not expect to see changes in the accuracy as we are applying the same nois
    \hline
         & Nearest Neighbor & Naive Bayes & Logistic Regression \\ \hline
          Accuracy 10 Fold Cross Validation &  70.7031\%&67.5781\% &  77.2135 \%  \\ \hline
-        \end{tabular}
+        \end{tabular}\caption{Table for 2.g)}
     \end{center}
 \end{table}
 
-\paragraph{h)}
+\paragraph{h)} See table at the end.
 
 \begin{table}[ht]
     \begin{center}
@@ -226,7 +224,7 @@ We do not expect to see changes in the accuracy as we are applying the same nois
    \hline
         & Nearest Neighbor & Naive Bayes & Logistic Regression \\ \hline
          Accuracy 10 Fold Cross Validation &  57.1615\%&76.3021\% &  77.2135 \%  \\ \hline
-        \end{tabular}
+        \end{tabular}\caption{Table for 2.h)}
     \end{center}
 \end{table}
 
