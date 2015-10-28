@@ -1,4 +1,5 @@
-import numpy, matplotlib
+import numpy
+from matplotlib import pylab
 
 class Perceptron(object):
     def __init__(self):
@@ -74,13 +75,12 @@ class Perceptron(object):
 
         return error_count
 
-
     def train(self):
         """ learn over the dataset """
         # reset the dataset each time
         self.w = numpy.zeros(15)
         self.epochs = 0
-        self.errors = {}
+        self.errors = []
         self.done = False
 
         while not self.done:
@@ -93,11 +93,14 @@ class Perceptron(object):
                     error_count += 1
                     self.w += numpy.dot(element["label"], element["data"])
 
-            self.errors["Epoch " + str(self.epochs)] = error_count
+            self.errors.append(error_count)
             self.epochs += 1
 
-            if error_count == 0:
+            if error_count == 0 or self.epochs > 1000:
                 self.done = True
+
+        return self.errors
+
 
     def consume_dataset(self, dataset):
         self.dataset = dataset
@@ -168,14 +171,21 @@ def a(dg):
 
     print prcp.errors
 
+    print prcp.w
+
+
 def b(dg):
 
     dg.generate_b()
 
     prcp = Perceptron()
     prcp.consume_dataset(dg.dataset)
-    prcp.train()
+    error = prcp.train()
 
+    pylab.plot(error)
+    pylab.xlabel("Epoch")
+    pylab.ylabel("Error count")
+    pylab.savefig("prcp.pdf")
     print prcp.epochs
 
     print prcp.errors
@@ -214,6 +224,6 @@ if __name__ == '__main__':
 
     # a(dg)
 
-    # b(dg)
+    b(dg)
 
-    c(dg)
+    # c(dg)

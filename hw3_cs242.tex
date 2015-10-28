@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{verbatim}
-%\usepackage[margin=0.5in]{geometry}
+\usepackage[margin=0.5in]{geometry}
 \setlength\parindent{0pt}
 \usepackage{color}
 \usepackage{graphicx}
@@ -15,6 +15,7 @@
 
 \begin{center}
 \Huge{\textsc{Homework 3}} 
+
 \Large\textsc{CMPS242 - Fall 2015}\\
 
 \large{Ehsan Amid \hfill Andrei Ignat  \hfill Sabina Tomkins} 
@@ -200,6 +201,23 @@ We do not expect to see changes in the accuracy as we are applying the same nois
     \end{center}
 \end{table}
 
+\section{Problem 3}
+
+\paragraph{a)}
+After running the code, we see that the perceptron manages to finish after $2$ epochs with an average of approximately 10 errors in the first epoch(and no errors in the second epoch). We note that, due to the setup of the labels, what the perceptron is doing in this part of the problem is to just learn that it should always predict with the label of the first feature. In other words, the weight vector $\mathbf{w}$ that will always have a large value for the first feature i.e.
+
+\[
+\mathbf{w}_1 >> \mathbf{w}_{2,\hdots,15} 
+\]
+
+\paragraph{b)}
+In the second part of the problem, the label is affected by all of the features in the dataset. In other words, the label is now the result of a non-linear mixture of the features of each vector. Since the perceptron is built in such a way that it should predict the \textit{linear dependence} of different features of the datapoints, we immediately realize that the perceptron will never manage to learn a weight vector $\mathbf{w}$ such that it yields no errors whatsoever. In Figure~\ref{fig:prcp}, one can see that throughout 1000 epochs, the error count of the perceptron follows two trends: firstly, the error count is stable in the sense that it always lies in a closed interval and secondly, there is a repetitive pattern to the error fluctuation. Since our learning rate $\eta_i=1$ is constant, training the perceptron will never converge to an error count of 0.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=0.5\textwidth]{prcp.pdf}
+\caption{Perceptron error rate over 1000 epochs}\label{fig:prcp}
+\hfill
+\end{figure}
 
 \section{Problem 4}
 
