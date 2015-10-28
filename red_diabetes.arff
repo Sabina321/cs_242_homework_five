@@ -89,16 +89,16 @@
 @attribute 'skin' real
 @attribute 'insu' real
 @attribute 'mass' real
-@attribute 'mass' real
-@attribute 'mass' real
-@attribute 'mass' real
-@attribute 'mass' real
-@attribute 'mass' real
-@attribute 'mass' real
-@attribute 'mass' real
-@attribute 'mass' real
-@attribute 'mass' real
-@attribute 'mass' real
+@attribute 'mass1' real
+@attribute 'mass2' real
+@attribute 'mass3' real
+@attribute 'mass4' real
+@attribute 'mass5' real
+@attribute 'mass6' real
+@attribute 'mass7' real
+@attribute 'mass8' real
+@attribute 'mass9' real
+@attribute 'mass10' real
 @attribute 'pedi' real
 @attribute 'age' real
 @attribute 'class' { tested_negative, tested_positive}
