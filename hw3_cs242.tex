@@ -219,6 +219,23 @@ In the second part of the problem, the label is affected by all of the features 
 \hfill
 \end{figure}
 
+\paragraph{c)}
+The following table contains the averages over 10 different test sets for the hypothesis described in part c).
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{c|c|c|c|c}
+
+		Last hypothesis & Average hypothesis & Voted hypothesis & Last epoch average & Last epoch vote \\
+	   \hline		125.8 & 125.8 & 125.8 & 125.8 & 125.8
+        \end{tabular}\caption{Average error count over 10 different test sets}
+    \end{center}
+\end{table}
+
+At first, it might look like there is a typo in our table. That is however not the case. Comparing to the labeling executed in part \textbf{b)}, we see that part \textbf{c)} has the same non-linearities in the labeling procedure. This means that, regardless of the number of epochs, the perceptron cannot determine an accurate weight vector $\mathbf{w}$ simply because this vector does not exist. Therefore, we will never reach an error count of 0. Now, why are all the average error counts the same?
+In the \textit{last hypothesis} case, one simply uses the most recent weight vector. This weight vector contains all the information that the previous weight vectors contained and as such, it is to be expected that using this hypothesis, we would get the same error count as in the case of the \textit{average hypothesis} case and the \textit{voted hypothesis} case. In these two cases, we again consider all the weight vectors, either under the form of a voting scheme or under the form of an average weight vector. While \textit{last epoch average} and \textit{last epoch vote} only consider weight vectors from the last epoch, these weight vectors contain the same information as the other cases and as such, all of the five hypothesis are, on average, completely equivalent to one another(it might happen that random fluctuations in the test set throw off the error count in specific cases, but on average, the five cases will have the same accuracy).
+
+Since the five hypothesis are equivalent to one another, we expect that their accuracy should be the same. That being said, an example of a non-equivalent hypothesis class would be one that considers e.g. only the first 10 weight vectors. This then would mean that the rest of the information from the learning phase is lost and hence this would yield a different accuracy than the five hypothesis presented in \textbf{c)}.
 \section{Problem 4}
 
 Note that

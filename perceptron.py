@@ -171,8 +171,6 @@ def a(dg):
 
     print prcp.errors
 
-    print prcp.w
-
 
 def b(dg):
 
@@ -186,9 +184,6 @@ def b(dg):
     pylab.xlabel("Epoch")
     pylab.ylabel("Error count")
     pylab.savefig("prcp.pdf")
-    print prcp.epochs
-
-    print prcp.errors
 
 
 def c(dg):
@@ -198,32 +193,44 @@ def c(dg):
     prcp.consume_dataset(dg.dataset)
     prcp.two_epoch_run()
 
-    test_set = DataGenerator()
-    test_set.generate_dataset()
-    test_set.generate_c()
+    lhypo, ahypo, vhypo, lea, lev = 0,0,0,0,0
+    for i in range(10):
+        test_set = DataGenerator()
+        test_set.generate_dataset()
+        test_set.generate_c()
+
+        lhypo += prcp.last_hypothesis(test_set.dataset)
+
+        ahypo += prcp.average_hypothesis(test_set.dataset)
+
+        vhypo += prcp.voted_hypothesis(test_set.dataset)
+
+        lea += prcp.last_epoch_average(test_set.dataset)
+
+        lev += prcp.last_epoch_vote(test_set.dataset)
 
     print "Last hypothesis"
-    print prcp.last_hypothesis(test_set.dataset)
+    print lhypo/10.
 
     print "Average hypothesis"
-    print prcp.average_hypothesis(test_set.dataset)
+    print ahypo/10.
 
     print "Voted hypothesis"
-    print prcp.voted_hypothesis(test_set.dataset)
+    print vhypo/10.
 
     print "Last epoch average"
-    print prcp.last_epoch_average(test_set.dataset)
+    print lea/10.
 
     print "Last epoch vote"
-    print prcp.last_epoch_vote(test_set.dataset)
+    print lev/10.
 
 
 if __name__ == '__main__':
     dg = DataGenerator()
     dg.generate_dataset()
 
-    # a(dg)
+    a(dg)
 
     b(dg)
 
-    # c(dg)
+    c(dg)
