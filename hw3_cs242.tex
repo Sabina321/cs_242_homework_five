@@ -172,6 +172,20 @@ Yes, we would. The model is more complex so it should obtain better results as l
 \end{table}
 
 \subsection{Part g}
+Create a modified version of the diabetes dataset by picking one attribute at random and adding 10 additional copies of that attribute to the data set (or.are). There should be the same number of examples, but each example will now have 19 rather than 9 attributes (including the class label). How would you expect the 10-fold cross validation accuracies of the classifiers to change? Runthe classifiers on the modified .arff fille and report the changes.
+
+We do not expect to see changes in the accuracy as we are applying the same noise to each data point. However the accuracy of the Naive Bayes and 1 Nearest Neighbor do go down slightly. 
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+   \hline
+        & Nearest Neighbor & Naive Bayes & Logistic Regression \\ \hline
+         Accuracy 10 Fold Cross Validation &  70.7031\%&67.5781\% &  77.2135 \%  \\ \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
 
 \section{Problem 4}
 
