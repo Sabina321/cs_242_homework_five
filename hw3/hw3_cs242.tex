@@ -239,7 +239,11 @@ After running the code, we see that the perceptron manages to finish after $2$ e
 \]
 
 \paragraph{b)}
-In the second part of the problem, the label is affected by all of the features in the dataset. In other words, the label is now the result of a non-linear mixture of the features of each vector. Since the perceptron is built in such a way that it should predict the \textit{linear dependence} of different features of the datapoints, we immediately realize that the perceptron will never manage to learn a weight vector $\mathbf{w}$ such that it yields no errors whatsoever. In Figure~\ref{fig:prcp}, one can see that throughout 1000 epochs, the error count of the perceptron follows two trends: firstly, the error count is stable in the sense that it always lies in a closed interval and secondly, there is a repetitive pattern to the error fluctuation. Since our learning rate $\eta_i=1$ is constant, training the perceptron will never converge to an error count of 0.
+
+The algorithm converges after around $6$ epochs. The weight vector is almost constant for all the features with mean $\approx 6$. We expected this weight vector because the data is linearly separable with a constant weight vector. The error is shown in Figure~\ref{fig:prcp}.
+
+%\paragraph{b)}
+%In the second part of the problem, the label is affected by all of the features in the dataset. In other words, the label is now the result of a non-linear mixture of the features of each vector. Since the perceptron is built in such a way that it should predict the \textit{linear dependence} of different features of the datapoints, we immediately realize that the perceptron will never manage to learn a weight vector $\mathbf{w}$ such that it yields no errors whatsoever. In Figure~\ref{fig:prcp}, one can see that throughout 1000 epochs, the error count of the perceptron follows two trends: firstly, the error count is stable in the sense that it always lies in a closed interval and secondly, there is a repetitive pattern to the error fluctuation. Since our learning rate $\eta_i=1$ is constant, training the perceptron will never converge to an error count of 0.
 
 \begin{figure}[ht]
 \centering\includegraphics[width=0.5\textwidth]{prcp.pdf}
@@ -277,7 +281,7 @@ and
 \end{equation*}
 Taking the derivative of $E(\mathbf{w})$ w.r.t. $\mathbf{w}$ and substituting for these $\frac{d y_n}{d \mathbf{w}}$ from above, we have:
 \begin{equation*}
-\nabla E(\mathbf{w}) = \sum_{n=1}^N (\frac{t_n}{y_n}  - \frac{(1-t_n)}{(1-y_n)}) \frac{d y_n}{d \mathbf{w}} = \sum_{n=1}^N (t_n(1-y_n)-(1-t_n)y_n) \mathbf{x}_n = \sum_{n=1}^N(t_n - y_n)\mathbf{x}_n
+\nabla E(\mathbf{w}) = -\sum_{n=1}^N (\frac{t_n}{y_n}  - \frac{(1-t_n)}{(1-y_n)}) \frac{d y_n}{d \mathbf{w}} = -\sum_{n=1}^N (t_n(1-y_n)-(1-t_n)y_n) \mathbf{x}_n = \sum_{n=1}^N(y_n - t_n)\mathbf{x}_n
 \end{equation*} 
 
 \end{document}
