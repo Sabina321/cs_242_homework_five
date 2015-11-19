@@ -1,3 +1,10 @@
+""" CMPS242 Fall 2015
+
+ Homework 3 - Perceptron script
+ Sabina Tomkins, Ehsan Amid, Andrei Ignat
+
+ """
+
 import numpy
 from matplotlib import pylab
 
@@ -92,7 +99,6 @@ class Perceptron(object):
                 if prediction != element["label"]:
                     error_count += 1
                     self.w += numpy.dot(element["label"], element["data"])
-
             self.errors.append(error_count)
             self.epochs += 1
 
@@ -145,7 +151,7 @@ class DataGenerator(object):
         """ if at least seven of the features are +1, we label with +1,
         else, we label with -1"""
         for element in self.dataset:
-            if sum(element["data"]) >= -1:
+            if sum(element["data"]) >= 0:
                 element["label"] = 1
             else:
                 element["label"] = -1
@@ -184,6 +190,10 @@ def b(dg):
     pylab.xlabel("Epoch")
     pylab.ylabel("Error count")
     pylab.savefig("prcp.pdf")
+
+    print prcp.errors
+
+    print prcp.epochs
 
 
 def c(dg):
