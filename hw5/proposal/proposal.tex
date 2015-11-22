@@ -18,29 +18,37 @@
 
 \Large\textsc{CMPS242 - Fall 2015}\\
 
-\large{Guangyu Wang \hfill Andrei Ignat  \hfill Sabina Tomkins} 
+\large{Andrei Ignat  \hfill Sabina Tomkins \hfill Guangyu Wang} 
 \end{center}
 
 \section*{Preprocessing}
-Before we begin with any sort of prediction for the \textbf{Titanic} dataset, we must first preprocess the data. For this we want to turn the \texttt{sex}, \texttt{age}, \texttt{sibsp}, \texttt{parch}, and \texttt{embarked} variables into numerical variables by using some sort of numerical encoding scheme. The \texttt{name} and \texttt{ticket} variables do not bear any relevant information for our model since each data point is already labeled by a unique id.
+Before we begin with any sort of prediction for the \textbf{Titanic} dataset, we must first preprocess the data. For this we want to turn the \texttt{sex}, \texttt{age}, \texttt{sibsp}, \texttt{parch}, and \texttt{embarked} variables into numerical variables by using some sort of numerical encoding scheme. The \texttt{name} and \texttt{ticket} variables do not bear any relevant information for our model since each data point is already labeled by a unique id. The price variable should be exciting to work with, it will be interesting to see if we can confirm the assertion that social status(as approximated by ticket price) was an indicator of survival. 
 
-% What do we do with the cabin? It's there but not for everyone
+\section*{Data Exploration}
+What kinds of passengers have similar characteristics? How does the probability of survival change with gender? We would like to uncover basic relationships between attributes before prediction, and to do so will use unsupervised methods covered in class, such as \textbf{clustering}. Understanding the features, which should enable us to do feature selection. 
 
 \section*{Model}
-For the purpose of prediction, we would like to build an \textbf{Ensemble Learning} model. As part of this model, we will include the \textit{Random Forrest Classifier} since this is the benchmark used by the authors of the sample script. Furthermore, we would like to integrate the following techniques in the ensemble and namely:
+For the purpose of prediction, we would like to build an \textbf{Ensemble Learning} model. As we saw in class ensembles can reduce variance and provide stability to predictions. As part of this model, we will include the \textit{Random Forest Classifier} since this is the benchmark used by the authors of the sample script. The goal of the ensemble is to try to find techniques which complement each other. So that one may detect outliers which are lost on the others, while some may be very good and predicting the bulk of the data well. While it may be difficult to ensure that our ensemble is diverse\cite{diversity} we will attempt to achieve a good ensemble by including as many techniques as possible, and by testing all combinations of classifiers to measure which subsets contribute the most. Furthermore, we would like to integrate the following techniques in the ensemble :
 
 \begin{itemize}
-\item \textbf{Logistic Regression} - this is an all time favorite in ML competitions and for good reason. We want a model which can learn how to predict binary features, representing whether or not the passenger survived. Logistic regression can handle outliers(which are to be expected in a dataset this small) and is interpretable.
+\item \textbf{Decision Trees} - Though decision trees may not be the most powerful classifiers, they provide some of the most interpretable results, and in addition to this reason, can be useful when combined (such as in the random forest classifier) in an ensemble. 
 
-\item \textbf{Support Vector Machines} - the good part of the support vector machine is that it is definitely a good model for predicting binary labels. However, we expect that finding the right kernel for the dataset might prove a bit difficult. Nonetheless, it's worth a try.
+\item \textbf{Logistic Regression} - This is an all time favorite in ML competitions and for good reason. We want a model which can learn how to predict binary features, representing whether or not the passenger survived. Logistic regression can handle outliers(which are to be expected in a dataset this small) and is interpretable. 
 
-\item \textbf{Neural Networks} - training a neural network on the dataset also seems to be a promising idea. The features and their potential internal interactions make the dataset suitable for a neural network approach.
+\item \textbf{Support Vector Machines} - As we saw in class Support Vector Machines\cite{Burges} are powerful classifiers, especially when used with the data-appropriate kernel function. We are excited to gain more exposure to kernel functions through this project, by testing as many as we can and finding the ones which capture the data the best. 
 
-%\item \textbf{Probabilistic Soft Logic}
+\item \textbf{Neural Networks} - Training a neural network on the dataset also seems to be a promising idea. The features and their potential internal interactions make the dataset suitable for a neural network approach. 
 
-\item \textbf{Deep Neural Networks} - the last method in the ensemble is also a bit of a reach method. Nonetheless, given the recent successes of deep neural networks, it would almost be a shame not to try and see how they fare against the other methods in the ensemble.
+\item \textbf{Deep Neural Networks} - the last method in the ensemble is also a bit of a reach method. Nonetheless, given the recent successes of deep neural networks, it would almost be a shame not to try and see how they fare against the other methods in the ensemble. While such a method may be unnecessary for the scope of the data, we are eager to try this exciting tool. 
+
+
 \end{itemize}
 
-%I'm bullshitting over here
-In order to combine all the results, we would like to use \textbf{AdaBoost} and then output a boosted prediction.
+In order to combine all the results, we will test a variety of voting schemes, beginning with majority vote, progressing to weighted majority vote and cascading, and also researching more sophisticated schemes\cite{battiti}. 
+
+We would also like to try AdaBoost both on it's own and as a method within the ensemble. 
+
+\bibliography{proposal_biblio}
+\bibliographystyle{plain}
+
 \end{document}
