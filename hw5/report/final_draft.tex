@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[margin=1in]{geometry}
+\setlength\parindent{0pt}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{hyperref}
+% \usepackage{subcaption}
+%\usepackage{tabularx}
+%\usepackage{float}
+
+\begin{document}
+
+
+\begin{center}
+\Huge{\textsc{Homework Five Proposal}} 
+
+\Large\textsc{CMPS242 - Fall 2015}\\
+
+\large{Andrei Ignat  \hfill Sabina Tomkins \hfill Guangyu Wang} 
+\end{center}
+
+\section*{Data Exploration}
+The first thing we wanted to look at was what the relative importance of different features are. We started this by looking at the correlation between different features. Here is what we saw: 
+
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+ &  Survived &    Pclass &       Age &     SibSp &     Parch &      Fare \\
+\hline
+Survived &  1.000000 & -0.323533 & -0.043385 &  0.085915 &  0.133933 &  0.266229 \\
+\hline
+Pclass   & -0.323533 &  1.000000 & -0.286081 & -0.039552 & -0.021019 & -0.573531 \\
+\hline
+Age      & -0.043385 & -0.286081 &  1.000000 & -0.142746 & -0.200112 &  0.093249 \\
+\hline
+SibSp    &  0.085915 & -0.039552 & -0.142746 &  1.000000 &  0.425241 &  0.358262 \\
+\hline
+Parch    &  0.133933 & -0.021019 & -0.200112 &  0.425241 &  1.000000 &  0.330360 \\
+\hline
+Fare     &  0.266229 & -0.573531 &  0.093249 &  0.358262 &  0.330360 &  1.000000 \\
+\hline
+\end{tabular}\\
+
+
+From this table we can see that if we want to be predicting survival, some especially correlated attributes are fare and Pclass. Both of these things have to do with socio-economic status. \\
+
+This prompts us to look at the percentage of each class which survived, which results in the following:
+
+
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+&  Class One &    Class Two &       Class Three\\
+\hline
+Average Survival &  .63 & .47 & .24\\
+\hline
+
+\end{tabular}
+
+
+
+\bibliography{proposal_biblio}
+\bibliographystyle{plain}
+
+\end{document}
