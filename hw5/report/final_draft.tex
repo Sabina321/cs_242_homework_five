@@ -57,7 +57,53 @@ Average Survival &  .63 & .47 & .24\\
 
 \end{tabular}
 
+Fare:
 
+Pclass:
+
+Fare & Pclass:
+
+Fare & Pclass & Gender
+
+
+[ 0.78290812  0.81702493  0.76732997  0.72384262  0.79258112]
+
+Fare & Pclass & Age
+
+
+[ 0.59390631  0.69139755  0.68916206  0.804376    0.68170617]
+
+Fare & Pclass & Embarked
+
+
+[ 0.54053681  0.68715123  0.6117014   0.73344071  0.70122227]
+
+
+["Pclass","Fare","Gender","Age"]
+
+
+[ 0.78290812  0.81702493  0.76732997  0.72384262  0.79258112]
+0.77673735022926149
+
+["Pclass","Fare","Gender","Embarked"]
+[ 0.78290812  0.81702493  0.76732997  0.72384262  0.79258112]
+0.77673735022926149
+
+All five: 0.77673735022926149
+
+
+C=500
+[ 0.71620556  0.83109993  0.77678818  0.75942139  0.82119062]
+0.78094113770932438
+
+In the case of the Linear SVM. Adding in age, and embarked gives no performance improvement. 
+
+C=50
+0.77673735022926149
+
+Logistic Regression
+
+Tried from 0-1000 in step sizes of 100, and saw no difference. .784 constant. 
 
 \bibliography{proposal_biblio}
 \bibliographystyle{plain}
